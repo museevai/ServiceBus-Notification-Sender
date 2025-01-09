@@ -1,5 +1,7 @@
 using Microsoft.Azure.Functions.Worker.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using ServiceBusNotificationSender;
 
 var builder = FunctionsApplication.CreateBuilder(args);
 
@@ -9,5 +11,11 @@ builder.ConfigureFunctionsWebApplication();
 // builder.Services
 //     .AddApplicationInsightsTelemetryWorkerService()
 //     .ConfigureFunctionsApplicationInsights();
+
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: true)
+    .AddJsonFile("local.settings.json", optional: true)
+    .AddEnvironmentVariables()
+    .AddUserSecrets<NotificationReceiver>();
 
 builder.Build().Run();
