@@ -19,8 +19,7 @@ builder.ConfigureFunctionsWebApplication();
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: true) 
     .AddJsonFile("local.settings.json", optional: true)
-    .AddEnvironmentVariables()
-    .AddUserSecrets<NotificationReceiver>();
+    .AddEnvironmentVariables();
 
 
 // Get the configuration object to read the Service Bus connection string and queue name.

@@ -13,20 +13,17 @@ namespace ServiceBusNotificationSender.Validators
     public class NotificationSenderDtoValidator :
         AbstractValidator<NotificationSenderDto>
     {
-        private readonly int messageMinLength;
-        private readonly int messageTitleMaxLength;
-        private readonly int messageBodyMaxLength;
-        private readonly ILogger logger;
-        private readonly IConfiguration config;
+        private readonly int messageMinLength = 10;
+        private readonly int messageTitleMaxLength = 250;
+        private readonly int messageBodyMaxLength = 5000;
 
-        public NotificationSenderDtoValidator(ILogger logger, IConfiguration config)
+        public NotificationSenderDtoValidator()
         {
-            this.logger = logger;
-            this.config = config;
+            
 
-            messageMinLength = config.GetValue<int>("NotificationSenderDtoValidatorSettings:MessageMinLength");
-            messageTitleMaxLength = config.GetValue<int>("NotificationSenderDtoValidatorSettings:MessageTitleMaxLength");
-            messageBodyMaxLength = config.GetValue<int>("NotificationSenderDtoValidatorSettings:MessageBodyMaxLength");
+            //messageMinLength = config.GetValue<int>("NotificationSenderDtoValidatorSettings:MessageMinLength");
+            //messageTitleMaxLength = config.GetValue<int>("NotificationSenderDtoValidatorSettings:MessageTitleMaxLength");
+            //messageBodyMaxLength = config.GetValue<int>("NotificationSenderDtoValidatorSettings:MessageBodyMaxLength");
 
 
             RuleFor(x => x.MessageTitle)
